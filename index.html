@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">📚</span><div><b>LibraCore</b><small>Management System</small></div></div>
+    <nav>
+      <a class="active" href="#dashboard">▦ Dashboard</a>
+      <a href="#books">📖 Books</a>
+      <a href="#members">👥 Members</a>
+      <a href="#transactions">↔ Transactions</a>
+    </nav>
+    <div class="sidebar-bottom"><button id="resetData" class="ghost">Reset Demo Data</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><span class="eyebrow">LIBRARY ADMINISTRATION</span><h1>Dashboard</h1></div>
+      <div class="admin">👤 <span>Administrator</span></div>
+    </header>
+
+    <section id="dashboard" class="view">
+      <div class="stats">
+        <div class="stat"><span>📚</span><div><small>Total Books</small><strong id="totalBooks">0</strong></div></div>
+        <div class="stat"><span>👥</span><div><small>Members</small><strong id="totalMembers">0</strong></div></div>
+        <div class="stat"><span>📤</span><div><small>Borrowed</small><strong id="borrowedCount">0</strong></div></div>
+        <div class="stat"><span>📥</span><div><small>Available</small><strong id="availableCount">0</strong></div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><div><h2>Book Collection</h2><p>Manage your library books.</p></div><button class="primary" onclick="openBookModal()">+ Add Book</button></div>
+        <div class="toolbar"><input id="bookSearch" placeholder="Search by title, author or category..." oninput="renderBooks()"><select id="categoryFilter" onchange="renderBooks()"><option value="">All categories</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Status</th><th>Action</th></tr></thead><tbody id="booksBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="members" class="view hidden">
+      <div class="panel"><div class="panel-head"><div><h2>Members</h2><p>Library member directory.</p></div><button class="primary" onclick="openMemberModal()">+ Add Member</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Action</th></tr></thead><tbody id="membersBody"></tbody></table></div></div>
+    </section>
+
+    <section id="transactions" class="view hidden">
+      <div class="panel"><div class="panel-head"><div><h2>Transactions</h2><p>Borrow and return books.</p></div></div>
+      <div class="transaction-grid">
+        <div class="form-card"><h3>Borrow a Book</h3><select id="borrowBook"></select><select id="borrowMember"></select><button class="primary full" onclick="borrowBook()">Borrow Book</button></div>
+        <div class="form-card"><h3>Recent Transactions</h3><div id="transactionList"></div></div>
+      </div></div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="modal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Add</h2><form id="entityForm"></form></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
